@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="KLARSPORT – hypotonisches Elektrolytgetränk der Klarfrisch GmbH. Vier Zutaten, rund 15 Kalorien pro Flasche.">
-<style>
-  /* Grundlagen, die im Artifact-Rahmen automatisch gesetzt sind */
-  html{ color-scheme: light dark; }
-  body{ margin:0; }
-  [hidden]{ display:none !important; }
-</style>
-<title>KLARSPORT</title>
+<!doctype html><html lang="de"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>KLARSPORT</title><meta name="description" content="KLARSPORT: hypotonisches Elektrolytgetraenk, Zitrone-Limette, vier Zutaten, rund 15 Kalorien pro Flasche."></head><body>
 <style>
   :root{
     --bg:#faf9f4;
@@ -269,6 +257,11 @@
   .channel .k{ font-size:var(--text-marker); color:var(--accent-deep); font-weight:700; letter-spacing:0.05em; text-transform:uppercase; }
   .channel h3{ font-size:1.05rem; }
   .channel p{ color:var(--ink-soft); font-size:var(--text); margin:0.2em 0 0; max-width:var(--measure); }
+  .channel p{ margin-bottom:calc(var(--para-gap) - 0.4em); }
+  .channel-cta{
+    margin-top:auto; align-self:flex-start;
+    padding:9px 18px;
+  }
 
   footer{
     border-top:1px solid var(--line); padding-block:32px;
@@ -278,8 +271,14 @@
     display:flex; justify-content:space-between; align-items:flex-start;
     gap:24px; flex-wrap:wrap;
   }
-  .foot-brand img{ height:30px; margin-bottom:12px; }
+  .foot-brand img{ height:32px; width:auto; margin-bottom:12px; }
   .foot-brand p{ color:var(--ink-soft); font-size:var(--text); margin:0; }
+  .foot-brand address{
+    color:var(--ink-soft); font-size:var(--text); font-style:normal;
+    line-height:var(--lh); margin:0; max-width:var(--measure);
+  }
+  .foot-brand address a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
+  .foot-brand address a:hover{ color:var(--ink); }
   .foot-credit{ color:var(--ink-soft); font-size:var(--text); max-width:var(--measure); margin:0; }
   .foot-links{ display:flex; flex-direction:column; gap:8px; }
   .foot-links .legal{ display:flex; gap:18px; flex-wrap:wrap; }
@@ -349,6 +348,11 @@
   .compare-source{
     margin:0; font-size:var(--text); color:var(--ink-soft); max-width:var(--measure);
   }
+  .compare-footnote{
+    margin:0.75em 0 0; font-size:var(--text-marker); color:var(--ink-soft);
+    max-width:var(--measure);
+  }
+  .compare-name sup{ font-size:0.7em; vertical-align:super; line-height:0; }
   @media (max-width:640px){
     .compare-row{ grid-template-columns:1fr auto; }
     .compare-track{ grid-column:1 / -1; order:3; }
@@ -379,8 +383,6 @@
   }
 </style>
 
-</head>
-<body>
 <header>
   <div class="wrap headrow">
     <div class="brandmark">
@@ -482,8 +484,8 @@
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Im Vergleich</span>
-        <h2>Wasser bringt Mineralstoffe mit. Kalium kaum.</h2>
-        <p>Beim Magnesium liegen einzelne Mineralwässer sogar über KLARSPORT. Beim Kalium ist der Abstand ein anderer.</p>
+        <h2>Mineralwasser liefert Mineralstoffe – Kalium jedoch meist nur in kleinen Mengen.</h2>
+        <p>Beim Magnesium können einzelne Mineralwässer höhere Werte erreichen. Beim Kalium zeigt sich dagegen ein deutlicher Unterschied.</p>
       </div>
       <div class="compare-card">
         <div class="compare-row">
@@ -492,11 +494,14 @@
           <div class="compare-val mono">500&nbsp;mg</div>
         </div>
         <div class="compare-row">
-          <div class="compare-name">Mineralwasser<span class="sub">höchster gefundener Wert</span></div>
+          <div class="compare-name">Mineralwasser<sup>1</sup><span class="sub">höchster Wert im Mineralwasser-Vergleich</span></div>
           <div class="compare-track"><div class="compare-fill is-reference" style="width:9.4%"></div></div>
           <div class="compare-val mono">47&nbsp;mg</div>
         </div>
-        <div class="compare-foot"><p class="compare-source">Der Wert für KLARSPORT stammt vom Etikett (50 mg je 100 ml). Der Vergleichswert ist der höchste Kaliumgehalt in einer Übersicht von über 100 deutschen Mineralwässern; die meisten liegen deutlich darunter, einige bei null. Bei Natrium und Magnesium gilt dieser Abstand nicht.</p></div>
+        <div class="compare-foot">
+          <p class="compare-source">KLARSPORT enthält laut Etikett 50&nbsp;mg Kalium je 100&nbsp;ml – entsprechend 500&nbsp;mg pro Liter. Der Vergleichswert von 47&nbsp;mg/l ist der höchste Kaliumgehalt in einer Auswertung von über 100 deutschen Mineralwässern. Die meisten untersuchten Mineralwässer liegen deutlich darunter. Bei Magnesium und Natrium ergibt sich kein vergleichbarer Abstand.</p>
+          <p class="compare-footnote"><sup>1</sup> Quelle der Auswertung: [Quellenangabe ergänzen]</p>
+        </div>
       </div>
     </div>
   </section>
@@ -505,7 +510,7 @@
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Erfahrung</span>
-        <h2>Was Feierabendsportler sagen – und wo die Grenze liegt.</h2>
+        <h2>Erfahrungen aus dem Alltag: Was Freizeitsportler berichten.</h2>
       </div>
       <div class="trust-grid">
         <div class="quote-card">
@@ -533,16 +538,19 @@
           <span class="k">Online</span>
           <h3>Eigener Onlineshop</h3>
           <p>Direkt bestellt, direkt geliefert. Der Shop folgt in Kürze.</p>
+          <a href="#bestellen" data-route="bestellen" class="btn btn-ghost channel-cta">Zum Onlineshop</a>
         </div>
         <div class="channel">
           <span class="k">Einzelhandel</span>
           <h3>Ausgewählte Bio-Supermärkte</h3>
           <p>Zunächst in einzelnen Filialen, Liste folgt mit dem Marktstart.</p>
+          <a href="#verfuegbarkeit" data-route="verfuegbarkeit" class="btn btn-ghost channel-cta">Wo es KLARSPORT gibt</a>
         </div>
         <div class="channel">
           <span class="k">Vor Ort</span>
           <h3>Partner-Fitnessstudios</h3>
           <p>Im Studiokühlschrank, dort wo dienstags und donnerstags trainiert wird.</p>
+          <a href="#verfuegbarkeit" data-route="verfuegbarkeit" class="btn btn-ghost channel-cta">Wo es KLARSPORT gibt</a>
         </div>
       </div>
     </div>
@@ -568,6 +576,27 @@
     </div>
   </div>
 </div>
+
+<div id="page-verfuegbarkeit" class="page-view" hidden>
+  <div class="wrap">
+    <div class="order-panel">
+      <span class="badge">Marktstart in Vorbereitung</span>
+      <h1>Wo es KLARSPORT gibt.</h1>
+      <p>Eine feste Liste mit Filialen und Studios steht noch nicht. Sie kommt mit dem Marktstart und dann steht sie hier.</p>
+      <p>Im Einzelhandel starten wir in einzelnen Bio-Supermärkten. Vor Ort stehen wir in den Kühlschränken einiger Partner-Fitnessstudios. Im Supermarkt um die Ecke sind wir noch nicht.</p>
+      <p>Du trainierst in einem Studio, in dem KLARSPORT stehen sollte? Schreib uns, in welchem. Wir fragen dort nach.</p>
+      <div class="order-actions">
+        <a href="mailto:info@klarfrisch.de?subject=Mein%20Studio%20f%C3%BCr%20KLARSPORT" class="btn">Studio vorschlagen</a>
+        <a href="#bestellen" data-route="bestellen" class="btn btn-ghost">Zum Onlineshop</a>
+        <a href="#start" data-route="start" class="btn btn-ghost">Zurück zur Startseite</a>
+      </div>
+      <div class="order-meta">
+        <div><div class="num mono">3</div><div class="lbl">Bezugswege</div></div>
+        <div><div class="num mono">2,49&nbsp;€</div><div class="lbl">pro 500&nbsp;ml</div></div>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
 
 <footer id="kontakt">
@@ -577,7 +606,12 @@
           <source srcset="images/logo-klarfrisch.webp" type="image/webp">
           <img src="images/logo-klarfrisch.png" width="600" height="146" alt="Logo Klarfrisch GmbH">
         </picture>
-      <p>Kontakt: [Adresse/E-Mail folgt]</p>
+      <address>
+        Klarfrisch GmbH<br>
+        Klarstraße 18<br>
+        18188 Klarstadt<br>
+        <a href="mailto:info@klarfrisch.de">info@klarfrisch.de</a>
+      </address>
     </div>
     <div class="foot-links">
       <div class="legal">
@@ -596,13 +630,15 @@
 (function () {
   var pages = {
     start: document.getElementById('page-start'),
-    bestellen: document.getElementById('page-bestellen')
+    bestellen: document.getElementById('page-bestellen'),
+    verfuegbarkeit: document.getElementById('page-verfuegbarkeit')
   };
 
   function show(name, anchorId) {
     var target = pages[name] ? name : 'start';
-    pages.start.hidden = target !== 'start';
-    pages.bestellen.hidden = target !== 'bestellen';
+    Object.keys(pages).forEach(function (key) {
+      pages[key].hidden = key !== target;
+    });
 
     if (anchorId) {
       var el = document.getElementById(anchorId);
@@ -616,8 +652,8 @@
 
   function routeFromHash() {
     var hash = (window.location.hash || '').replace('#', '');
-    if (hash === 'bestellen') {
-      show('bestellen');
+    if (hash && hash !== 'start' && pages[hash]) {
+      show(hash);
     } else if (hash && hash !== 'start') {
       show('start', hash);
     } else {
@@ -642,5 +678,4 @@
 })();
 </script>
 
-</body>
-</html>
+</body></html>
