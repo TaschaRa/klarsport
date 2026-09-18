@@ -220,33 +220,65 @@
   .price-line .unit{ color:var(--ink-soft); font-size:var(--text-marker); }
 
   /* trust */
-  .trust-grid{
-    display:grid; grid-template-columns:1.2fr 1fr; gap:28px;
+  .voice-banner{
+    display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap;
+    background:var(--surface-sunken); border:1px solid var(--line);
+    border-radius:6px; padding:16px 20px; margin-bottom:28px;
   }
-  @media (max-width:780px){ .trust-grid{ grid-template-columns:1fr; } }
-  .quote-card{
-    background:var(--accent-tint); border-radius:6px; padding:30px 32px;
+  .voice-banner .flag{
+    flex:0 0 auto; background:var(--ink); color:var(--bg);
+    border-radius:3px; padding:4px 10px;
+    font-size:var(--text-marker); font-weight:700;
+    letter-spacing:0.08em; text-transform:uppercase;
   }
-  .quote-card blockquote{
-    margin:0; font-size:1.15rem; font-family:"Archivo",sans-serif; font-weight:500;
-    line-height:1.5; max-width:var(--measure);
+  .voice-banner p{
+    margin:0; font-size:var(--text-marker); color:var(--ink-soft);
+    line-height:1.55; max-width:var(--measure);
   }
-  .quote-card cite{
-    display:block; margin-top:var(--para-gap); font-size:var(--text-marker); color:var(--ink-soft);
-    font-style:normal;
+  .voice-lead{
+    margin:0 0 20px; background:var(--accent-tint); border-radius:6px;
+    padding:38px 44px 30px;
   }
-  .limit-card{
-    border:1px solid var(--line); border-radius:6px; padding:24px 28px var(--para-gap);
-    display:flex; flex-direction:column; gap:0;
+  .voice-lead blockquote{
+    margin:0; font-family:"Archivo",sans-serif; font-weight:500;
+    font-size:clamp(1.25rem,2.4vw,1.7rem); line-height:1.35;
+    letter-spacing:-0.01em; max-width:26ch; text-wrap:balance;
   }
-  .limit-card .tag + p{ margin-top:0.4em; }
-  .limit-card p + .tag{ margin-top:var(--para-gap); }
-  .limit-card .tag{
+  .voice-lead figcaption{
+    margin-top:22px; padding-top:16px;
+    border-top:1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+    font-size:var(--text-marker); color:var(--ink-soft);
+  }
+  .voice-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .voice{
+    margin:0; background:var(--surface); border:1px solid var(--line);
+    border-radius:6px; padding:24px 26px 20px;
+  }
+  .voice blockquote{
+    margin:0; font-family:"Archivo",sans-serif; font-weight:500;
+    font-size:1.1rem; line-height:1.45; max-width:var(--measure);
+  }
+  .voice figcaption{ margin-top:16px; font-size:var(--text-marker); color:var(--ink-soft); }
+  .limit-strip{
+    display:grid; grid-template-columns:1fr 1fr; gap:0;
+    margin-top:32px; border-top:1px solid var(--line);
+  }
+  .limit-item{ padding:18px 24px 18px 0; }
+  .limit-item + .limit-item{ padding-left:24px; border-left:1px solid var(--line); }
+  .limit-item .tag{
     font-size:var(--text-marker); text-transform:uppercase; letter-spacing:0.08em;
     color:var(--ink-soft); font-weight:700;
   }
-  .limit-card p{ margin:0; font-size:var(--text); max-width:var(--measure); }
-
+  .limit-item p{ margin:0.35em 0 0; font-size:var(--text); color:var(--ink-soft); max-width:var(--measure); }
+  @media (max-width:780px){
+    .voice-grid{ grid-template-columns:1fr; }
+    .limit-strip{ grid-template-columns:1fr; }
+    .limit-item{ padding:18px 0; }
+    .limit-item + .limit-item{ padding-left:0; border-left:none; border-top:1px solid var(--line); }
+  }
+  @media (max-width:640px){
+    .voice-lead{ padding:28px 22px 22px; }
+  }
   /* bezugswege */
   .channels{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
   @media (max-width:780px){ .channels{ grid-template-columns:1fr; } }
@@ -510,16 +542,32 @@
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Erfahrung</span>
-        <h2>Erfahrungen aus dem Alltag: Was Freizeitsportler berichten.</h2>
+        <h2>Drei Stimmen aus dem Studio.</h2>
       </div>
-      <div class="trust-grid">
-        <div class="quote-card">
-          <blockquote>„Ich hab mit Süßstoff-Nachgeschmack gerechnet. Der kam nicht, seitdem nehme ich kein Wasser mehr mit ins Studio.“</blockquote>
-          <cite>Kundenstimme, Übungs-Platzhalter</cite>
-        </div>
-        <div class="limit-card">
+      <aside class="voice-banner">
+        <span class="flag">Übungs-Platzhalter</span>
+        <p>Alle Stimmen in diesem Abschnitt sind erfunden. KLARSPORT ist ein Übungsprojekt. Es gibt weder das Produkt noch Kundinnen und Kunden.</p>
+      </aside>
+      <figure class="voice-lead">
+        <blockquote>„Ich hab mit Süßstoff-Nachgeschmack gerechnet. Der kam nicht, seitdem nehme ich kein Wasser mehr mit ins Studio.“</blockquote>
+        <figcaption>Trainiert dienstags und donnerstags</figcaption>
+      </figure>
+      <div class="voice-grid">
+        <figure class="voice">
+          <blockquote>„Ich lese Zutatenlisten. Bei KLARSPORT war ich schnell durch.“</blockquote>
+          <figcaption>Liest Etiketten vor dem Kauf</figcaption>
+        </figure>
+        <figure class="voice">
+          <blockquote>„Ich nehm sie mit, weil ich nach dem Training nichts Süßes will. Das war es eigentlich schon.“</blockquote>
+          <figcaption>Nimmt die Flasche mit ins Studio</figcaption>
+        </figure>
+      </div>
+      <div class="limit-strip">
+        <div class="limit-item">
           <span class="tag">Ehrliche Grenze</span>
           <p>KLARSPORT ersetzt keine ausgewogene Ernährung.</p>
+        </div>
+        <div class="limit-item">
           <span class="tag">Verfügbarkeit</span>
           <p>Im Supermarkt um die Ecke stehen wir noch nicht. Es gibt uns im Onlineshop und in wenigen Studios.</p>
         </div>
