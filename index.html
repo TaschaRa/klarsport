@@ -279,6 +279,50 @@
   @media (max-width:640px){
     .voice-lead{ padding:28px 22px 22px; }
   }
+
+  /* Laufband mit weiteren Stimmen */
+  .ticker{
+    margin-top:30px; padding-top:22px; border-top:1px solid var(--line);
+  }
+  .ticker-head{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:14px; flex-wrap:wrap; margin-bottom:16px;
+  }
+  .ticker-head .tag{
+    font-size:var(--text-marker); text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--ink-soft); font-weight:700;
+  }
+  .ticker-btn{
+    background:transparent; border:1px solid var(--line); border-radius:3px;
+    color:var(--ink-soft); font-family:inherit; font-size:var(--text-marker);
+    font-weight:600; padding:6px 14px; cursor:pointer;
+  }
+  .ticker-btn:hover{ background:var(--surface-sunken); color:var(--ink); }
+  .ticker-viewport{ overflow:hidden; }
+  .ticker-track{
+    display:flex; align-items:stretch; gap:14px; width:max-content;
+    margin:0; padding:0; list-style:none;
+    animation:ticker-scroll 46s linear infinite;
+  }
+  .ticker:hover .ticker-track,
+  .ticker:focus-within .ticker-track,
+  .ticker[data-paused="true"] .ticker-track{ animation-play-state:paused; }
+  .ticker-item{
+    flex:0 0 auto; display:flex; align-items:center;
+    background:var(--surface); border:1px solid var(--line); border-radius:999px;
+    padding:11px 22px; white-space:nowrap;
+    font-family:"Archivo",sans-serif; font-weight:500; font-size:1rem;
+    color:var(--ink);
+  }
+  @keyframes ticker-scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(calc(-50% - 7px)); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation:none; }
+    .ticker-viewport{ overflow-x:auto; }
+    .ticker-btn{ display:none; }
+  }
   /* bezugswege */
   .channels{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
   @media (max-width:780px){ .channels{ grid-template-columns:1fr; } }
@@ -562,6 +606,26 @@
           <figcaption>Nimmt die Flasche mit ins Studio</figcaption>
         </figure>
       </div>
+      <div class="ticker" data-paused="false">
+        <div class="ticker-head">
+          <span class="tag">Weitere Stimmen</span>
+          <button type="button" class="ticker-btn" data-ticker-toggle>Pause</button>
+        </div>
+        <div class="ticker-viewport">
+          <ul class="ticker-track">
+            <li class="ticker-item">„Schmeckt nach Zitrone, nicht nach Zuckerersatz.“</li>
+            <li class="ticker-item">„Die Flasche steht bei mir im Spind. Dienstags, donnerstags, samstags.“</li>
+            <li class="ticker-item">„Vier Zutaten. Ich musste nichts nachschlagen.“</li>
+            <li class="ticker-item">„Nach dem Training greif ich nicht mehr automatisch zum Wasser.“</li>
+            <li class="ticker-item">„Kalorienarm, und man merkt es nicht am Geschmack.“</li>
+            <li class="ticker-item" aria-hidden="true">„Schmeckt nach Zitrone, nicht nach Zuckerersatz.“</li>
+            <li class="ticker-item" aria-hidden="true">„Die Flasche steht bei mir im Spind. Dienstags, donnerstags, samstags.“</li>
+            <li class="ticker-item" aria-hidden="true">„Vier Zutaten. Ich musste nichts nachschlagen.“</li>
+            <li class="ticker-item" aria-hidden="true">„Nach dem Training greif ich nicht mehr automatisch zum Wasser.“</li>
+            <li class="ticker-item" aria-hidden="true">„Kalorienarm, und man merkt es nicht am Geschmack.“</li>
+          </ul>
+        </div>
+      </div>
       <div class="limit-strip">
         <div class="limit-item">
           <span class="tag">Ehrliche Grenze</span>
@@ -675,6 +739,19 @@
 </footer>
 
 <script>
+(function () {
+  // Laufband: Pausetaste, damit die Bewegung anhaltbar ist (WCAG 2.2.2)
+  var ticker = document.querySelector('.ticker');
+  if (!ticker) return;
+  var btn = ticker.querySelector('[data-ticker-toggle]');
+  if (!btn) return;
+
+  btn.addEventListener('click', function () {
+    var paused = ticker.getAttribute('data-paused') === 'true';
+    ticker.setAttribute('data-paused', paused ? 'false' : 'true');
+    btn.textContent = paused ? 'Pause' : 'Weiter';
+  });
+})();
 (function () {
   var pages = {
     start: document.getElementById('page-start'),
