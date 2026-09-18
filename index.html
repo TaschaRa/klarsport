@@ -235,33 +235,54 @@
     margin:0; font-size:var(--text-marker); color:var(--ink-soft);
     line-height:1.55; max-width:var(--measure);
   }
-  .voice-lead{
-    margin:0 0 20px; background:var(--accent-tint); border-radius:6px;
-    padding:38px 44px 30px;
+
+  /* Laufband mit den Stimmen */
+  .ticker-head{ display:flex; justify-content:flex-end; margin-bottom:14px; }
+  .ticker-btn{
+    background:transparent; border:1px solid var(--line); border-radius:3px;
+    color:var(--ink-soft); font-family:inherit; font-size:var(--text-marker);
+    font-weight:600; padding:6px 14px; cursor:pointer;
   }
-  .voice-lead blockquote{
+  .ticker-btn:hover{ background:var(--surface-sunken); color:var(--ink); }
+  .ticker-viewport{ overflow:hidden; }
+  .ticker-track{
+    display:flex; align-items:stretch; gap:18px; width:max-content;
+    margin:0; padding:0; list-style:none;
+    animation:ticker-scroll 52s linear infinite;
+  }
+  .ticker:hover .ticker-track,
+  .ticker:focus-within .ticker-track,
+  .ticker[data-paused="true"] .ticker-track{ animation-play-state:paused; }
+  .ticker-item{
+    flex:0 0 clamp(250px, 78vw, 360px);
+    display:flex; flex-direction:column; justify-content:space-between;
+    background:var(--accent-tint); border-radius:6px;
+    padding:26px 28px 22px;
+  }
+  .ticker-item blockquote{
     margin:0; font-family:"Archivo",sans-serif; font-weight:500;
-    font-size:clamp(1.25rem,2.4vw,1.7rem); line-height:1.35;
-    letter-spacing:-0.01em; max-width:26ch; text-wrap:balance;
+    font-size:1.2rem; line-height:1.4; letter-spacing:-0.01em;
   }
-  .voice-lead figcaption{
-    margin-top:22px; padding-top:16px;
+  .ticker-item .who{
+    display:block; margin-top:20px; padding-top:14px;
     border-top:1px solid color-mix(in srgb, var(--ink) 14%, transparent);
-    font-size:var(--text-marker); color:var(--ink-soft);
+    font-family:"IBM Plex Sans", sans-serif; font-size:var(--text-marker);
+    color:var(--ink-soft);
   }
-  .voice-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  .voice{
-    margin:0; background:var(--surface); border:1px solid var(--line);
-    border-radius:6px; padding:24px 26px 20px;
+  .ticker-item .who b{ color:var(--ink); font-weight:600; }
+  @keyframes ticker-scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(calc(-50% - 9px)); }
   }
-  .voice blockquote{
-    margin:0; font-family:"Archivo",sans-serif; font-weight:500;
-    font-size:1.1rem; line-height:1.45; max-width:var(--measure);
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation:none; }
+    .ticker-viewport{ overflow-x:auto; }
+    .ticker-head{ display:none; }
   }
-  .voice figcaption{ margin-top:16px; font-size:var(--text-marker); color:var(--ink-soft); }
+
   .limit-strip{
     display:grid; grid-template-columns:1fr 1fr; gap:0;
-    margin-top:32px; border-top:1px solid var(--line);
+    margin-top:34px; padding-top:4px; border-top:1px solid var(--line);
   }
   .limit-item{ padding:18px 24px 18px 0; }
   .limit-item + .limit-item{ padding-left:24px; border-left:1px solid var(--line); }
@@ -271,57 +292,9 @@
   }
   .limit-item p{ margin:0.35em 0 0; font-size:var(--text); color:var(--ink-soft); max-width:var(--measure); }
   @media (max-width:780px){
-    .voice-grid{ grid-template-columns:1fr; }
     .limit-strip{ grid-template-columns:1fr; }
     .limit-item{ padding:18px 0; }
     .limit-item + .limit-item{ padding-left:0; border-left:none; border-top:1px solid var(--line); }
-  }
-  @media (max-width:640px){
-    .voice-lead{ padding:28px 22px 22px; }
-  }
-
-  /* Laufband mit weiteren Stimmen */
-  .ticker{
-    margin-top:30px; padding-top:22px; border-top:1px solid var(--line);
-  }
-  .ticker-head{
-    display:flex; align-items:center; justify-content:space-between;
-    gap:14px; flex-wrap:wrap; margin-bottom:16px;
-  }
-  .ticker-head .tag{
-    font-size:var(--text-marker); text-transform:uppercase; letter-spacing:0.08em;
-    color:var(--ink-soft); font-weight:700;
-  }
-  .ticker-btn{
-    background:transparent; border:1px solid var(--line); border-radius:3px;
-    color:var(--ink-soft); font-family:inherit; font-size:var(--text-marker);
-    font-weight:600; padding:6px 14px; cursor:pointer;
-  }
-  .ticker-btn:hover{ background:var(--surface-sunken); color:var(--ink); }
-  .ticker-viewport{ overflow:hidden; }
-  .ticker-track{
-    display:flex; align-items:stretch; gap:14px; width:max-content;
-    margin:0; padding:0; list-style:none;
-    animation:ticker-scroll 46s linear infinite;
-  }
-  .ticker:hover .ticker-track,
-  .ticker:focus-within .ticker-track,
-  .ticker[data-paused="true"] .ticker-track{ animation-play-state:paused; }
-  .ticker-item{
-    flex:0 0 auto; display:flex; align-items:center;
-    background:var(--surface); border:1px solid var(--line); border-radius:999px;
-    padding:11px 22px; white-space:nowrap;
-    font-family:"Archivo",sans-serif; font-weight:500; font-size:1rem;
-    color:var(--ink);
-  }
-  @keyframes ticker-scroll{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(calc(-50% - 7px)); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .ticker-track{ animation:none; }
-    .ticker-viewport{ overflow-x:auto; }
-    .ticker-btn{ display:none; }
   }
   /* bezugswege */
   .channels{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
@@ -586,43 +559,58 @@
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Erfahrung</span>
-        <h2>Drei Stimmen aus dem Studio.</h2>
+        <h2>Fünf Stimmen aus dem Studio.</h2>
       </div>
       <aside class="voice-banner">
         <span class="flag">Übungs-Platzhalter</span>
         <p>Alle Stimmen in diesem Abschnitt sind erfunden. KLARSPORT ist ein Übungsprojekt. Es gibt weder das Produkt noch Kundinnen und Kunden.</p>
       </aside>
-      <figure class="voice-lead">
-        <blockquote>„Ich hab mit Süßstoff-Nachgeschmack gerechnet. Der kam nicht, seitdem nehme ich kein Wasser mehr mit ins Studio.“</blockquote>
-        <figcaption>Trainiert dienstags und donnerstags</figcaption>
-      </figure>
-      <div class="voice-grid">
-        <figure class="voice">
-          <blockquote>„Ich lese Zutatenlisten. Bei KLARSPORT war ich schnell durch.“</blockquote>
-          <figcaption>Liest Etiketten vor dem Kauf</figcaption>
-        </figure>
-        <figure class="voice">
-          <blockquote>„Ich nehm sie mit, weil ich nach dem Training nichts Süßes will. Das war es eigentlich schon.“</blockquote>
-          <figcaption>Nimmt die Flasche mit ins Studio</figcaption>
-        </figure>
-      </div>
       <div class="ticker" data-paused="false">
         <div class="ticker-head">
-          <span class="tag">Weitere Stimmen</span>
           <button type="button" class="ticker-btn" data-ticker-toggle>Pause</button>
         </div>
         <div class="ticker-viewport">
           <ul class="ticker-track">
-            <li class="ticker-item">„Schmeckt nach Zitrone, nicht nach Zuckerersatz.“</li>
-            <li class="ticker-item">„Die Flasche steht bei mir im Spind. Dienstags, donnerstags, samstags.“</li>
-            <li class="ticker-item">„Vier Zutaten. Ich musste nichts nachschlagen.“</li>
-            <li class="ticker-item">„Nach dem Training greif ich nicht mehr automatisch zum Wasser.“</li>
-            <li class="ticker-item">„Kalorienarm, und man merkt es nicht am Geschmack.“</li>
-            <li class="ticker-item" aria-hidden="true">„Schmeckt nach Zitrone, nicht nach Zuckerersatz.“</li>
-            <li class="ticker-item" aria-hidden="true">„Die Flasche steht bei mir im Spind. Dienstags, donnerstags, samstags.“</li>
-            <li class="ticker-item" aria-hidden="true">„Vier Zutaten. Ich musste nichts nachschlagen.“</li>
-            <li class="ticker-item" aria-hidden="true">„Nach dem Training greif ich nicht mehr automatisch zum Wasser.“</li>
-            <li class="ticker-item" aria-hidden="true">„Kalorienarm, und man merkt es nicht am Geschmack.“</li>
+            <li class="ticker-item">
+              <blockquote>„Schmeckt nach Zitrone, nicht nach Zuckerersatz.“</blockquote>
+              <span class="who"><b>Miriam</b> · Trainiert nach Feierabend</span>
+            </li>
+            <li class="ticker-item">
+              <blockquote>„Die Flasche steht bei mir im Spind. Dienstags, donnerstags, samstags.“</blockquote>
+              <span class="who"><b>Tobias</b> · Hat die Flasche im Spind</span>
+            </li>
+            <li class="ticker-item">
+              <blockquote>„Vier Zutaten. Ich musste nichts nachschlagen.“</blockquote>
+              <span class="who"><b>Anke</b> · Liest Etiketten vor dem Kauf</span>
+            </li>
+            <li class="ticker-item">
+              <blockquote>„Nach dem Training greif ich nicht mehr automatisch zum Wasser.“</blockquote>
+              <span class="who"><b>Deniz</b> · Früher Wasser, jetzt KLARSPORT</span>
+            </li>
+            <li class="ticker-item">
+              <blockquote>„Kalorienarm, und man merkt es nicht am Geschmack.“</blockquote>
+              <span class="who"><b>Sven</b> · Trainiert samstags morgens</span>
+            </li>
+            <li class="ticker-item" aria-hidden="true">
+              <blockquote>„Schmeckt nach Zitrone, nicht nach Zuckerersatz.“</blockquote>
+              <span class="who"><b>Miriam</b> · Trainiert nach Feierabend</span>
+            </li>
+            <li class="ticker-item" aria-hidden="true">
+              <blockquote>„Die Flasche steht bei mir im Spind. Dienstags, donnerstags, samstags.“</blockquote>
+              <span class="who"><b>Tobias</b> · Hat die Flasche im Spind</span>
+            </li>
+            <li class="ticker-item" aria-hidden="true">
+              <blockquote>„Vier Zutaten. Ich musste nichts nachschlagen.“</blockquote>
+              <span class="who"><b>Anke</b> · Liest Etiketten vor dem Kauf</span>
+            </li>
+            <li class="ticker-item" aria-hidden="true">
+              <blockquote>„Nach dem Training greif ich nicht mehr automatisch zum Wasser.“</blockquote>
+              <span class="who"><b>Deniz</b> · Früher Wasser, jetzt KLARSPORT</span>
+            </li>
+            <li class="ticker-item" aria-hidden="true">
+              <blockquote>„Kalorienarm, und man merkt es nicht am Geschmack.“</blockquote>
+              <span class="who"><b>Sven</b> · Trainiert samstags morgens</span>
+            </li>
           </ul>
         </div>
       </div>
